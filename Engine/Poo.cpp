@@ -24,9 +24,9 @@ void Poo::Update()
 		x = 0;
 		vx = -vx;
 	}
-	else if( right >= (float)Graphics::ScreenWidth )
+	else if( right >= float( Graphics::ScreenWidth ) )
 	{
-		x = float(Graphics::ScreenWidth - 1) - width;
+		x = float( Graphics::ScreenWidth - 1 ) - width;
 		vx = -vx;
 	}
 
@@ -36,9 +36,9 @@ void Poo::Update()
 		y = 0;
 		vy = -vy;
 	}
-	else if( bottom >= Graphics::ScreenHeight )
+	else if( bottom >= float( Graphics::ScreenHeight ) )
 	{
-		y = float(Graphics::ScreenHeight - 1) - height;
+		y = float( Graphics::ScreenHeight - 1 ) - height;
 		vy = -vy;
 	}
 }
@@ -61,8 +61,10 @@ bool Poo::TestCollision( const Dude& dude ) const
 void Poo::Draw( Graphics& gfx ) const
 {
 	assert( initialized == true );
-	const int x_int = int(x);
-	const int y_int = int(y);
+
+	const int x_int = int( x );
+	const int y_int = int( y );
+
 	gfx.PutPixel( 14 + x_int,0 + y_int,138,77,0 );
 	gfx.PutPixel( 7 + x_int,1 + y_int,138,77,0 );
 	gfx.PutPixel( 13 + x_int,1 + y_int,138,77,0 );

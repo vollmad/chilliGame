@@ -13,7 +13,7 @@ public:
 	{}
 	void Draw( Graphics& gfx ) const
 	{
-		gfx.DrawRectDim( (int)x,(int)y,(int)dimension,(int)dimension,c );
+		gfx.DrawRectDim( int( x ),int( y ),int( dimension ),int( dimension ),c );
 	}
 	bool TestCollision( const Dude& dude ) const
 	{

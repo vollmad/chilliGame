@@ -8,9 +8,9 @@ void Dude::ClampToScreen()
 	{
 		x = 0;
 	}
-	else if( right >= (float)Graphics::ScreenWidth )
+	else if( right >= float( Graphics::ScreenWidth ) )
 	{
-		x = float(Graphics::ScreenWidth - 1) - width;
+		x = float( Graphics::ScreenWidth - 1 ) - width;
 	}
 
 	const float bottom = y + height;
@@ -18,16 +18,17 @@ void Dude::ClampToScreen()
 	{
 		y = 0;
 	}
-	else if( bottom >= (float)Graphics::ScreenHeight )
+	else if( bottom >= float( Graphics::ScreenHeight ) )
 	{
-		y = float(Graphics::ScreenHeight - 1) - height;
+		y = float( Graphics::ScreenHeight - 1 ) - height;
 	}
 }
 
 void Dude::Draw( Graphics& gfx ) const
 {
-	const int x_int = int(x);
-	const int y_int = int(x);
+	const int x_int = int( x );
+	const int y_int = int( y );
+
 	gfx.PutPixel( 7 + x_int,0 + y_int,0,0,0 );
 	gfx.PutPixel( 8 + x_int,0 + y_int,0,0,0 );
 	gfx.PutPixel( 9 + x_int,0 + y_int,0,0,0 );
