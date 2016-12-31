@@ -30,12 +30,12 @@ Game::Game( MainWindow& wnd )
 	xDist( 0,770 ),
 	yDist( 0,570 ),
 	goal( xDist( rng ),yDist( rng ) ),
-	meter( 20,20 )
+	meter( 20.0f,20.0f)
 {
-	std::uniform_int_distribution<int> vDist( -1,1 );
+	std::uniform_real_distribution<float> vDist( -2.5f,2.5f );
 	for( int i = 0; i < nPoo; ++i )
 	{
-		poos[i].Init( xDist( rng ),yDist( rng ),vDist( rng ),vDist( rng ) );
+		poos[i].Init( xDist( rng ),yDist( rng ),vDist( rng), vDist(rng));
 	}
 	title.Play();
 }
@@ -68,7 +68,7 @@ void Game::UpdateModel()
 
 		if( goal.TestCollision( dude ) )
 		{
-			goal.Respawn( xDist( rng ),yDist( rng ) );
+			goal.Respawn((float) xDist( rng ),(float)yDist( rng ) );
 			meter.IncreaseLevel();
 			pickup.Play( rng );
 		}
