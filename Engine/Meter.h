@@ -5,7 +5,7 @@
 class Meter
 {
 public:
-	Meter( int x,int y )
+	Meter( int x, int y )
 		:
 		x( x ),
 		y( y )
@@ -14,19 +14,19 @@ public:
 	{
 		++level;
 	}
-	int GetLevel() const
+	float GetLevel() const
 	{
 		return level;
 	}
 	void Draw( Graphics& gfx ) const
 	{
-		gfx.DrawRectDim( x,y,level * scale,girth,c );
+		gfx.DrawRectDim( (int)x,(int)y,int(level * scale),(int)girth,c );
 	}
 private:
 	static constexpr Color c = Colors::Blue;
-	static constexpr int girth = 12;
-	static constexpr int scale = 4;
-	int level = 0;
-	int x;
-	int y;
+	static constexpr float girth = 12.0f;
+	static constexpr float scale = 4.0f;
+	float level = 0.0f;
+	float x;
+	float y;
 };

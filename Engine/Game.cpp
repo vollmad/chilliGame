@@ -30,12 +30,12 @@ Game::Game( MainWindow& wnd )
 	xDist( 0,770 ),
 	yDist( 0,570 ),
 	goal( xDist( rng ),yDist( rng ) ),
-	meter( 20,20 )
+	meter( 20.0f,20.0f)
 {
-	std::uniform_real_distribution<float> vDist( -2.5f * 60.0f,2.5f * 60.0f );
+	std::uniform_real_distribution<float> vDist( -2.5f,2.5f );
 	for( int i = 0; i < nPoo; ++i )
 	{
-		poos[i].Init( xDist( rng ),yDist( rng ),vDist( rng ),vDist( rng ) );
+		poos[i].Init( xDist( rng ),yDist( rng ),vDist( rng), vDist(rng));
 	}
 	title.Play();
 }
@@ -50,17 +50,15 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	const float dt = ft.Mark();
-
 	goal.UpdateColor();
 	if( isStarted && !isGameOver )
 	{
-		dude.Update( wnd.kbd,dt );
+		dude.Update( wnd.kbd );
 		dude.ClampToScreen();
 
 		for( int i = 0; i < nPoo; ++i )
 		{
-			poos[i].Update( dt );
+			poos[i].Update();
 			if( poos[i].TestCollision( dude ) )
 			{
 				isGameOver = true;
@@ -70,7 +68,7 @@ void Game::UpdateModel()
 
 		if( goal.TestCollision( dude ) )
 		{
-			goal.Respawn( xDist( rng ),yDist( rng ) );
+			goal.Respawn((float) xDist( rng ),(float)yDist( rng ) );
 			meter.IncreaseLevel();
 			pickup.Play( rng );
 		}
@@ -28450,4 +28448,5 @@ void Game::ComposeFrame()
 		}
 		meter.Draw( gfx );
 	}
+	gfx.DrawCircle(200, 100, 100, Colors::Blue);
 }
